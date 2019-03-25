@@ -23,9 +23,31 @@ from pyspark import SparkConf, Row
 from pyspark.sql import SparkSession
 import pyspark.sql.types as T
 import pyspark.sql.functions as F
+import logging
+
+# create logger
+logger = logging.getLogger('spark-horo-tf-example')
+logger.setLevel(logging.DEBUG)
+
+# create console handler and set level to debug
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+
+# create log formatter
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+# add formatter to ch
+ch.setFormatter(formatter)
+
+# add ch to logger
+logger.addHandler(ch)
+
+logger.debug('Imports done')
 
 # Location of data on local filesystem (prefixed with file://) or on HDFS.
 DATA_LOCATION = 'hdfs://hdfs-1-namenode-1.hdfs-1-namenode.hdfs1.svc.cluster.local:8020/horo-data'
+
+logger.debug('Data location : {}', DATA_LOCATION)
 
 # Location of outputs on local filesystem (without file:// prefix).
 LOCAL_SUBMISSION_CSV = 'submission.csv'
