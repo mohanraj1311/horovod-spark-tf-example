@@ -24,6 +24,7 @@ from pyspark.sql import SparkSession
 import pyspark.sql.types as T
 import pyspark.sql.functions as F
 import logging
+import sys
 
 # create logger
 logger = logging.getLogger('spark-horo-tf-example')
@@ -45,9 +46,10 @@ logger.addHandler(ch)
 logger.debug('Imports done')
 
 # Location of data on local filesystem (prefixed with file://) or on HDFS.
-DATA_LOCATION = 'hdfs://hdfs-1-namenode-1.hdfs-1-namenode.hdfs1.svc.cluster.local:8020/horo-data'
+# DATA_LOCATION = 'hdfs://hdfs-1-namenode-1.hdfs-1-namenode.hdfs1.svc.cluster.local:8020/horo-data'
+DATA_LOCATION = sys.argv[0]
 
-logger.debug('Data location : {}', DATA_LOCATION)
+logger.debug('Data location : {}'.format(DATA_LOCATION))
 
 # Location of outputs on local filesystem (without file:// prefix).
 LOCAL_SUBMISSION_CSV = 'submission.csv'
@@ -92,6 +94,9 @@ if LIGHT_PROCESSING_CLUSTER:
 spark = SparkSession.builder.config(conf=conf).getOrCreate()
 
 train_csv = spark.read.csv('%s/train.csv' % DATA_LOCATION, header=True)
+if train_csv:
+    logger.debug('read from hdfs path:train.csv')
+
 test_csv = spark.read.csv('%s/test.csv' % DATA_LOCATION, header=True)
 
 store_csv = spark.read.csv('%s/store.csv' % DATA_LOCATION, header=True)
