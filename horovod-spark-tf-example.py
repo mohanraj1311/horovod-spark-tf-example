@@ -47,7 +47,7 @@ logger.debug('Imports done')
 
 # Location of data on local filesystem (prefixed with file://) or on HDFS.
 # DATA_LOCATION = 'hdfs://hdfs-1-namenode-1.hdfs-1-namenode.hdfs1.svc.cluster.local:8020/horo-data'
-DATA_LOCATION = sys.argv[0]
+DATA_LOCATION = sys.argv[1]
 
 logger.debug('Data location : {}'.format(DATA_LOCATION))
 
