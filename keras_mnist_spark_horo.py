@@ -29,7 +29,7 @@ def training_fn():
 
     # Enough epochs to demonstrate learning rate warmup and the reduction of
     # learning rate when training plateaues.
-    epochs = 24
+    epochs = 12
 
     # Input image dimensions
     img_rows, img_cols = 28, 28
