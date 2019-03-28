@@ -131,7 +131,7 @@ def training_fn():
 
 # Create a spark session for training the model
 conf = SparkConf().setAppName('training')
-conf.setMaster('k8s://http://localhost:6443')
+#conf.setMaster('k8s://http://localhost:6443')
 sc = SparkContext(conf)
 
 
