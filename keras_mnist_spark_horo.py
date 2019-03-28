@@ -9,6 +9,7 @@ from keras import backend as K
 import tensorflow as tf
 import horovod.keras as hvd
 import horovod.spark
+from pyspark import SparkConf
 
 
 def training_fn():
