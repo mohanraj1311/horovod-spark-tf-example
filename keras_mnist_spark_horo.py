@@ -131,7 +131,7 @@ def training_fn():
 
 # Create a spark session for training the model
 conf = SparkConf().setAppName('training')
-conf.setMaster('local[*]')
+conf.setMaster('spark://172.25.103.1:6443')
 sc = SparkContext(conf)
 
 
@@ -143,4 +143,4 @@ score = tr_model.evaluate(test_data_x_test, test_data_y_test, verbose=0)
 print('Test loss:', score[0])
 print('Test accuracy:', score[1])
 
-sc.stop()
+# sc.stop()
