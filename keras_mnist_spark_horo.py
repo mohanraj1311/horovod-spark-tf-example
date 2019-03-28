@@ -10,6 +10,7 @@ import tensorflow as tf
 import horovod.keras as hvd
 import horovod.spark
 from pyspark import SparkConf
+from pyspark import SparkContext
 
 
 def training_fn():
@@ -131,7 +132,7 @@ def training_fn():
 # Create a spark session for training the model
 conf = SparkConf().setAppName('training')
 conf.setMaster('k8s://https://127.0.0.1:6443')
-spark = SparkSession.builder.config(conf=conf).getOrCreate()
+sc = SparkContext(conf)
 
 
 tr_model, test_data_x_test, test_data_y_test = horovod.spark.run((training_fn), num_proc=3, verbose=2)
@@ -142,4 +143,4 @@ score = tr_model.evaluate(test_data_x_test, test_data_y_test, verbose=0)
 print('Test loss:', score[0])
 print('Test accuracy:', score[1])
 
-spark.stop()
+sc.stop()
