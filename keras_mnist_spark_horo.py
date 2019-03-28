@@ -130,7 +130,7 @@ def training_fn():
 
 
 # Create a spark session for training the model
-spark = SparkSession.builder.appName("Training_the_mnist_model").getorCreate()
+spark = SparkSession.builder.appName("Training_the_mnist_model").getOrCreate()
 
 
 tr_model, test_data_x_test, test_data_y_test = horovod.spark.run((training_fn), num_proc=3, verbose=2)
