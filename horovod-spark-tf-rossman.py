@@ -64,7 +64,7 @@ LIGHT_PROCESSING_CLUSTER = None  # or 'spark://hostname:7077'
 TRAINING_CLUSTER = None  # or 'spark://hostname:7077'
 
 # The number of training processes.
-NUM_TRAINING_PROC = 4
+NUM_TRAINING_PROC = 3
 
 # Desired sampling rate.  Useful to set to low number (e.g. 0.01) to make sure
 # that end-to-end process works.
